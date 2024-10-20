@@ -5,17 +5,22 @@
 :root{
   --absoluteWidth: 100vw;
   --absoluteHeight: 100vh;
+  --width: 100%;
+  --height: 100%;
   --backgroundColor: wheat;
   --fontfamily: fondamento;
   --color:  rgb(24, 19, 10);
 }
 .App {
   text-align: center;
+  width: var(--absoluteWidth);
+  height: var(--absoluteHeight);
+  background-color: var(--backgroundColor);
+  overflow-x: hidden;
+  padding: .5rem;
 }
 
-
 .App-header {
-  background-color: var(--backgroundColor);
   min-height: var(--absoluteHeight);
   display: flex;
   flex-direction: column;
