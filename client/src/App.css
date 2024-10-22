@@ -10,6 +10,8 @@
   --backgroundColor: wheat;
   --fontfamily: fondamento;
   --color:  rgb(24, 19, 10);
+  --borderRadius: .5rem;
+  --padding: 1rem;
 }
 .App {
   text-align: center;
@@ -18,6 +20,7 @@
   background-color: var(--backgroundColor);
   overflow-x: hidden;
   padding: .5rem;
+  position: relative;
 }
 
 .App-header {

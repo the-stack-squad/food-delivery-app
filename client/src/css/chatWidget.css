@@ -1,8 +1,8 @@
 /* Chat Widget container */
 .chat-widget {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 3rem;
+  right: 2rem;
   z-index: 100;
 }
 
@@ -10,10 +10,10 @@
   background-color: rgb(248, 127, 82, .5);
   padding: .2rem;
   border-radius: 50%;
-  width: 80px;
-  height: 80px;
+  width: 50px;
+  height: 50px;
   cursor: pointer;
-  box-shadow: 0px 4px 12px orangered;
+  box-shadow: 0px .2rem .4rem orangered;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,21 +24,27 @@
   color: white;
 }
 
+@media(max-width: 575.98px){
 .chat-box {
-  width: 320px;
+  max-width: 370px;
+  width: 90%;
   background: #fff;
   border-radius: 10px;
   box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.2);
   overflow: hidden;
+  position: relative;
+  top: 30%;
+  left: 10%;
+}
 }
 
 .chat-header {
   display: flex;
   align-items: center;
-  padding: 10px 15px;
+  padding: .6rem 1rem;
   background-color: #f9d76e;
   color: #333;
-  border-bottom: 1px solid #ddd;
+  border-bottom: .2px solid #ddd;
 }
 
 .chat-header img.profile-pic {
@@ -56,7 +62,7 @@
 
 .chat-header p {
   margin: 0;
-  font-size: 12px;
+  font-size: .8rem;
   color: #666;
 }
 
@@ -77,11 +83,11 @@
 }
 
 .chat-message {
-  margin-bottom: 10px;
-  display: inline-block;
-  padding: 8px 12px;
-  border-radius: 18px;
-  font-size: 14px;
+  margin-bottom: .4rem;
+  display: display;
+  padding: .4rem .7rem;
+  border-radius: var(--borderRadius);
+  font-size: 1rem;
   max-width: 70%;
 }
 
@@ -124,4 +130,62 @@
 
 .chat-input button:hover {
   background-color: #f8c856;
+}
+
+/* Responsive  design For Medium & Large Viewport */
+@media (min-width: 576px) {
+  .chat-widget {
+    bottom: 4rem;
+    right: 3rem;
+  }
+  .chat-icon {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .envelope-icon {
+    font-size: 3rem;
+  }
+  .chat-box {
+    max-width: 550px;
+    background-color: gainsboro;
+  }
+  .chat-header img.profile-pic {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .chat-header h4 {
+    font-size: 1.5rem;
+  }
+
+  .chat-header p {
+    font-size: 1.4rem;
+  }
+  
+  .chat-header .close {
+    font-size: 1.4rem;
+    background-color: rgb(87, 29, 8, .7);
+    border: none;
+    outline: none;
+    padding: var(--padding);
+    color: wheat;
+    border-radius: var(--borderRadius);
+  }
+  .chat-message {
+    font-size: 1.4rem;
+    max-width: 70%;
+  }
+  
+.chat-input input {
+  flex: 1;
+  padding: .9rem .5rem;
+}
+
+.chat-input button {
+  padding: .9rem .5rem;
+  border-radius: var(--borderRadius);
+  color: black;
+  font-size: 1.3rem;
+}
 }
