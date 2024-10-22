@@ -142,13 +142,21 @@
     width: 80px;
     height: 80px;
   }
-  
+  .chat-body {
+    height: auto;
+    width: auto;
+    padding: var(--padding);
+font-family: var(--fontfamily);    
+  }
   .envelope-icon {
     font-size: 3rem;
   }
   .chat-box {
-    max-width: 550px;
+    width: 500px;
+    height: auto;
     background-color: gainsboro;
+    padding: var(--padding);
+    font-family: var(--fontfamily);
   }
   .chat-header img.profile-pic {
     width: 80px;
@@ -156,15 +164,15 @@
   }
   
   .chat-header h4 {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 
   .chat-header p {
-    font-size: 1.4rem;
+    font-size: 1rem;
   }
   
   .chat-header .close {
-    font-size: 1.4rem;
+    font-size: 1rem;
     background-color: rgb(87, 29, 8, .7);
     border: none;
     outline: none;
@@ -173,19 +181,25 @@
     border-radius: var(--borderRadius);
   }
   .chat-message {
-    font-size: 1.4rem;
-    max-width: 70%;
+    font-size: 1rem;
+    max-width: 50%;
   }
-  
+  .chat-message.sent,
+  .chat-message.recieved {
+    width: fit-content;
+  }
 .chat-input input {
   flex: 1;
   padding: .9rem .5rem;
+  font-size: 1rem;
+  font-family: var(--fontfamily);
 }
 
 .chat-input button {
-  padding: .9rem .5rem;
+  padding: .3rem .5rem;
   border-radius: var(--borderRadius);
   color: black;
-  font-size: 1.3rem;
+  font-size: 1rem;
+  font-family: var(--fontfamily);
 }
 }
