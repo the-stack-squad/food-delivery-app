@@ -44,7 +44,7 @@ const ChatWidget = () => {
       {/* Chat UI */}
       <AnimatePresence>
         {isChatOpen && (
-          <motion.div
+            <motion.div
             className="chat-box"
             initial={{ opacity: 0, y: 50 }}    // Starting position (hidden)
             animate={{ opacity: 1, y: 0 }}     // Visible and in place
