@@ -114,7 +114,7 @@ const ChatWidget = () => {
               />
               <button onClick={handleSendMessage}>Send</button>
             </div>
-         i </motion.div>
+          </motion.div>
         )}
       </AnimatePresence>
     </div>
