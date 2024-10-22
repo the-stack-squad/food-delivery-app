@@ -1,27 +1,20 @@
+// src/components/ChatWidget.js
+
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { motion, AnimatePresence } from 'framer-motion';
 import devImage from '../asset/img/mandela.webp';
 import '../css/chatWidget.css';
+import { chatBoxAnimation } from '../animations/chatMotion';
+import useSocket from '../hooks/useSocket';  // Import useSocket hook
 
 const ChatWidget = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
-  const [messages, setMessages] = useState([
-    {
-      sender: 'John Doe',
-      text: 'Hi, how can I assist you today?',
-    },
-    {
-      sender: 'You',
-      text: 'I wanted to ask if you have some East African Food on your specials.',
-    },
-    {
-      sender:  'John Doe',
-      text: 'Sure! I can get the menu, price, and the locations we cover to your email',
-    },
-  ]);
+  const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
+  
+  const { isConnected, isTyping, sendMessage, startTyping, stopTyping } = useSocket();
 
   const toggleChat = () => {
     setIsChatOpen(!isChatOpen);
@@ -29,8 +22,19 @@ const ChatWidget = () => {
 
   const handleSendMessage = () => {
     if (input.trim()) {
+      sendMessage({ sender: 'You', text: input });  // Send message via socket
       setMessages([...messages, { sender: 'You', text: input }]);
       setInput('');
+    }
+  };
+
+  // Handle typing indicator
+  const handleInputChange = (e) => {
+    setInput(e.target.value);
+    if (e.target.value) {
+      startTyping();  // Emit typing event
+    } else {
+      stopTyping();   // Emit stop typing event
     }
   };
 
@@ -44,12 +48,9 @@ const ChatWidget = () => {
       {/* Chat UI */}
       <AnimatePresence>
         {isChatOpen && (
-            <motion.div
+          <motion.div
             className="chat-box"
-            initial={{ opacity: 0, y: 50 }}    // Starting position (hidden)
-            animate={{ opacity: 1, y: 0 }}     // Visible and in place
-            exit={{ opacity: 0, y: 50 }}       // Exit animation (slide down and hide)
-            transition={{ duration: 0.3 }}     // Duration of the animation
+            {...chatBoxAnimation}  // Apply animation
           >
             {/* Header */}
             <div className="chat-header">
@@ -61,6 +62,13 @@ const ChatWidget = () => {
               <button className="close" onClick={toggleChat}>Close</button>
             </div>
 
+            {/* Loading state */}
+            {!isConnected && (
+              <div className="chat-loading">
+                <span>Connecting...</span>
+              </div>
+            )}
+
             {/* Chat body */}
             <div className="chat-body">
               {messages.map((msg, index) => (
@@ -71,6 +79,13 @@ const ChatWidget = () => {
                   <span>{msg.text}</span>
                 </div>
               ))}
+
+              {/* Typing indicator */}
+              {isTyping && (
+                <div className="typing-indicator">
+                  <span>John Doe is typing...</span>
+                </div>
+              )}
             </div>
 
             {/* Input area */}
@@ -78,7 +93,8 @@ const ChatWidget = () => {
               <input
                 type="text"
                 value={input}
-                onChange={(e) => setInput(e.target.value)}
+                onChange={handleInputChange}
+                onBlur={stopTyping}  // Stop typing when the user stops typing
                 placeholder="Type a message..."
               />
               <button onClick={handleSendMessage}>Send</button>
