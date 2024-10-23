@@ -1,8 +1,8 @@
 /* Chat Widget container */
 .chat-widget {
   position: fixed;
-  bottom: 3rem;
-  right: 2rem;
+  bottom: 5rem;
+  right: 3rem;
   z-index: 100;
 }
 
@@ -26,7 +26,7 @@
 
 @media(max-width: 575.98px){
 .chat-box {
-  max-width: 370px;
+  max-width: 450px;
   width: 90%;
   background: #fff;
   border-radius: 10px;
@@ -35,6 +35,9 @@
   position: relative;
   top: 30%;
   left: 10%;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--fontfamily);
 }
 }
 
@@ -101,32 +104,59 @@
   color: #333;
   align-self: flex-end;
   margin-left: auto;
+  width: fit-content;
+  padding: .3rem;
 }
 
 .chat-input {
-  display: flex;
-  padding: 10px;
+  padding: 0.5rem;
   border-top: 1px solid #ddd;
   background-color: #fff;
+  width: 100%;
+  display: flex;
+  justify-content: space-between; /* Space between input and button */
+  align-items: center;
+  overflow: hidden;
+  box-sizing: border-box; /* Ensure padding and border are included in total width */
 }
 
 .chat-input input {
   flex: 1;
-  padding: 8px 12px;
+  padding: 0.5rem;
   border: 1px solid #ddd;
   border-radius: 20px;
-  margin-right: 10px;
+  margin-right: 0.5rem;
+  box-sizing: border-box;
+  outline: none;
 }
 
 .chat-input button {
   background-color: #f9d76e;
   border: none;
-  padding: 8px 12px;
+  padding: 0.5rem;
   border-radius: 20px;
   color: white;
   cursor: pointer;
   font-size: 14px;
+  width: 100px;
+  box-sizing: border-box; /* Ensure padding doesn't cause overflow */
 }
+
+@media (max-width: 575.98px) {
+  .chat-input {
+    padding: 0.5rem; /* Maintain padding for smaller screens */
+  }
+
+  .chat-input input {
+    padding: 0.4rem; /* Slightly smaller padding for smaller screens */
+  }
+
+  .chat-input button {
+    width: 80px; /* Adjust button size for small screens */
+    padding: 0.4rem; /* Maintain padding balance */
+  }
+}
+
 
 .chat-input button:hover {
   background-color: #f8c856;
